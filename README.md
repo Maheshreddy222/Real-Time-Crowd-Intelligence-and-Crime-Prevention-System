@@ -35,61 +35,11 @@ Development Tools
 Visual Studio Code
 Git
 GitHub
-🏗️ Project Architecture
-                +-----------------------+
-                |      User Interface   |
-                | (HTML, CSS, JavaScript)|
-                +-----------+-----------+
-                            |
-                            |
-                     REST API Requests
-                            |
-                +-----------v-----------+
-                |     FastAPI Backend   |
-                | Authentication, APIs  |
-                +-----------+-----------+
-                            |
-          +-----------------+-----------------+
-          |                                   |
-          |                                   |
-+---------v---------+               +---------v---------+
-|   AI Analysis     |               |     SQLite DB     |
-| Gemini + OpenCV   |               | Users, Videos,    |
-| Frame Processing  |               | Alerts, Results   |
-+---------+---------+               +---------+---------+
-          |                                   |
-          +-----------------+-----------------+
-                            |
-                    Dashboard & Alerts
-📂 Project Structure
-AI-Sentinel/
-│
-├── backend/
-│   ├── main.py
-│   ├── analysis.py
-│   ├── auth.py
-│   ├── database.py
-│   ├── alerts.py
-│   ├── videos.py
-│   ├── cameras.py
-│   └── settings.py
-│
-├── frontend/
-│   ├── index.html
-│   ├── css/
-│   ├── js/
-│   └── assets/
-│
-├── uploads/
-├── database/
-│   └── sentinel.db
-│
-├── requirements.txt
-├── .env
-└── README.md
+
+
 ⚙️ Installation
 1. Clone the Repository
-git clone https://github.com/yourusername/ai-sentinel.git
+
 cd ai-sentinel
 2. Create a Virtual Environment
 
