@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Notifications - AI Sentinel</title>
+  <meta name="description" content="AI-Based Smart CCTV Surveillance System - Notifications">
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+  
+</head>
+<body>
+<div class="app-layout">
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <div class="sidebar-logo-icon"><i data-lucide="shield" style="width:20px;height:20px"></i></div>
+      <div><h1>AI Sentinel</h1><p>Smart CCTV</p></div>
+    </div>
+    <nav>
+<a class="nav-item {% if request.path == '/' %}active{% endif %}" href="/">Dashboard</a>
+<a class="nav-item {% if request.path == '/search/' %}active{% endif %}" href="/search/">Search</a>
+<a class="nav-item {% if request.path == '/cameras/' %}active{% endif %}" href="/cameras/">Live Cameras</a>
+
+<a class="nav-item {% if request.path == '/detection/' %}active{% endif %}" href="/detection/">AI Detection</a>
+
+<a class="nav-item {% if request.path == '/alerts/' %}active{% endif %}" href="/alerts/">Alerts</a>
+
+<a class="nav-item {% if request.path == '/analytics/' %}active{% endif %}" href="/analytics/">Analytics</a>
+
+<a class="nav-item {% if request.path == '/users/' %}active{% endif %}" href="/users/">Users</a>
+
+<a class="nav-item {% if request.path == '/security/' %}active{% endif %}" href="/security/">Security</a>
+
+<a class="nav-item {% if request.path == '/settings/' %}active{% endif %}" href="/settings/">Settings</a>
+
+
+</nav>
+    <div class="sidebar-user">
+      <div class="sidebar-avatar">AD</div>
+      <div class="sidebar-user-info"><p>Admin User</p><p>System Admin</p></div>
+      <button class="sidebar-logout"><i data-lucide="log-out" style="width:16px;height:16px"></i></button>
+    </div>
+  </aside>
+  <div class="main-wrapper">
+    <header class="header">
+  <div>
+    <h1 class="font-heading">AI Surveillance Dashboard</h1>
+    <p class="subtitle"><span id="header-date"></span> • <span class="time" id="header-time"></span></p>
+  </div>
+  <div class="header-actions">
+
+
+
+  <!-- REFRESH -->
+  <button class="header-btn" onclick="goToDashboard()">
+    <i data-lucide="refresh-cw" style="width:16px;height:16px"></i>
+  </button>
+
+  <!-- NOTIFICATIONS -->
+<a href="/notifications/" class="header-btn pulse-dot">
+  <i data-lucide="bell" style="width:16px;height:16px"></i>
+</a>
+
+<!-- PROFILE -->
+<a href="/profile/" class="header-avatar">AD</a>
+</div>
+</header>
+    <main class="main-content">
+      
+<div class="page-title-section">
+  <h1 class="page-title">Notifications</h1>
+  <button class="btn btn-secondary btn-sm">Mark All as Read</button>
+</div>
+<div class="glass-card">
+  <div class="notification-item unread"><div class="notification-dot" style="background:hsl(var(--danger))"></div><div class="flex-1"><div class="flex items-center gap-2 mb-1"><i data-lucide="shield-alert" style="width:16px;height:16px" class="icon-danger"></i><span class="text-sm font-semibold">Suspicious Activity Detected</span><span class="badge badge-danger">High</span></div><p class="text-xs text-muted">Unidentified individual near Parking Lot B restricted zone</p><span class="text-xs text-muted" style="margin-top:4px;display:block"><i data-lucide="clock" style="width:12px;height:12px;display:inline;vertical-align:-2px"></i> 2 minutes ago</span></div></div>
+  <div class="notification-item unread"><div class="notification-dot" style="background:hsl(var(--warning))"></div><div class="flex-1"><div class="flex items-center gap-2 mb-1"><i data-lucide="hard-hat" style="width:16px;height:16px" class="icon-warning"></i><span class="text-sm font-semibold">Safety Violation</span><span class="badge badge-warning">Medium</span></div><p class="text-xs text-muted">Worker without helmet detected at Construction Site</p><span class="text-xs text-muted" style="margin-top:4px;display:block"><i data-lucide="clock" style="width:12px;height:12px;display:inline;vertical-align:-2px"></i> 8 minutes ago</span></div></div>
+  <div class="notification-item unread"><div class="notification-dot" style="background:hsl(var(--danger))"></div><div class="flex-1"><div class="flex items-center gap-2 mb-1"><i data-lucide="shield-alert" style="width:16px;height:16px" class="icon-danger"></i><span class="text-sm font-semibold">Unauthorized Access</span><span class="badge badge-danger">High</span></div><p class="text-xs text-muted">Entry detected at Gate 4 perimeter after hours</p><span class="text-xs text-muted" style="margin-top:4px;display:block"><i data-lucide="clock" style="width:12px;height:12px;display:inline;vertical-align:-2px"></i> 23 minutes ago</span></div></div>
+  <div class="notification-item"><div class="notification-dot" style="background:hsl(var(--muted-foreground))"></div><div class="flex-1"><div class="flex items-center gap-2 mb-1"><i data-lucide="check-circle-2" style="width:16px;height:16px" class="icon-success"></i><span class="text-sm font-semibold">Alert Resolved</span></div><p class="text-xs text-muted">Crowd density at Main Entrance returned to normal</p><span class="text-xs text-muted" style="margin-top:4px;display:block"><i data-lucide="clock" style="width:12px;height:12px;display:inline;vertical-align:-2px"></i> 1 hour ago</span></div></div>
+  <div class="notification-item"><div class="notification-dot" style="background:hsl(var(--muted-foreground))"></div><div class="flex-1"><div class="flex items-center gap-2 mb-1"><i data-lucide="info" style="width:16px;height:16px" class="icon-info"></i><span class="text-sm font-semibold">System Update</span></div><p class="text-xs text-muted">AI Detection model v2.4 deployed successfully</p><span class="text-xs text-muted" style="margin-top:4px;display:block"><i data-lucide="clock" style="width:12px;height:12px;display:inline;vertical-align:-2px"></i> 3 hours ago</span></div></div>
+  <div class="notification-item"><div class="notification-dot" style="background:hsl(var(--muted-foreground))"></div><div class="flex-1"><div class="flex items-center gap-2 mb-1"><i data-lucide="camera" style="width:16px;height:16px" class="icon-muted"></i><span class="text-sm font-semibold">Camera Back Online</span></div><p class="text-xs text-muted">Server Room camera reconnected after maintenance</p><span class="text-xs text-muted" style="margin-top:4px;display:block"><i data-lucide="clock" style="width:12px;height:12px;display:inline;vertical-align:-2px"></i> 5 hours ago</span></div></div>
+</div>
+    </main>
+  </div>
+</div>
+<script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>

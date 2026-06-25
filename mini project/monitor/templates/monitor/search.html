@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Search - AI Sentinel</title>
+  <meta name="description" content="AI-Based Smart CCTV Surveillance System - Search">
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+  
+</head>
+<body>
+<div class="app-layout">
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <div class="sidebar-logo-icon"><i data-lucide="shield" style="width:20px;height:20px"></i></div>
+      <div><h1>AI Sentinel</h1><p>Smart CCTV</p></div>
+    </div>
+    <nav>
+<a class="nav-item {% if request.path == '/' %}active{% endif %}" href="/">Dashboard</a>
+<a class="nav-item {% if request.path == '/search/' %}active{% endif %}" href="/search/">Search</a>
+<a class="nav-item {% if request.path == '/cameras/' %}active{% endif %}" href="/cameras/">Live Cameras</a>
+
+<a class="nav-item {% if request.path == '/detection/' %}active{% endif %}" href="/detection/">AI Detection</a>
+
+<a class="nav-item {% if request.path == '/alerts/' %}active{% endif %}" href="/alerts/">Alerts</a>
+
+<a class="nav-item {% if request.path == '/analytics/' %}active{% endif %}" href="/analytics/">Analytics</a>
+
+<a class="nav-item {% if request.path == '/users/' %}active{% endif %}" href="/users/">Users</a>
+
+<a class="nav-item {% if request.path == '/security/' %}active{% endif %}" href="/security/">Security</a>
+
+<a class="nav-item {% if request.path == '/settings/' %}active{% endif %}" href="/settings/">Settings</a>
+
+
+</nav>
+    <div class="sidebar-user">
+      <div class="sidebar-avatar">AD</div>
+      <div class="sidebar-user-info"><p>Admin User</p><p>System Admin</p></div>
+      <button class="sidebar-logout"><i data-lucide="log-out" style="width:16px;height:16px"></i></button>
+    </div>
+  </aside>
+  <div class="main-wrapper">
+    <header class="header">
+  <div>
+    <h1 class="font-heading">AI Surveillance Dashboard</h1>
+    <p class="subtitle"><span id="header-date"></span> • <span class="time" id="header-time"></span></p>
+  </div>
+  <div class="header-actions">
+
+
+
+  <!-- REFRESH -->
+  <button class="header-btn" onclick="goToDashboard()">
+    <i data-lucide="refresh-cw" style="width:16px;height:16px"></i>
+  </button>
+
+  <!-- NOTIFICATIONS -->
+<a href="/notifications/" class="header-btn pulse-dot">
+  <i data-lucide="bell" style="width:16px;height:16px"></i>
+</a>
+
+<!-- PROFILE -->
+<a href="/profile/" class="header-avatar">AD</a>
+</div>
+</header>
+    <main class="main-content">
+      
+<h1 class="page-title">Search</h1>
+<div style="max-width:640px">
+  <div style="position:relative"><i data-lucide="search" style="position:absolute;left:12px;top:50%;transform:translateY(-50%);width:20px;height:20px;color:hsl(var(--muted-foreground))"></i><input id="page-search" data-target=".search-item" class="input" style="padding:12px 16px 12px 44px;font-size:16px" placeholder="Search cameras, alerts, users, settings..."></div>
+</div>
+<div class="search-results-list">
+  <div class="search-result-item search-item"><div class="flex items-center gap-3"><i data-lucide="camera" style="width:20px;height:20px" class="icon-primary"></i><div><p class="text-sm font-semibold">Main Entrance Camera</p><p class="text-xs text-muted">Building A - Gate 1 • Online • 14 people detected</p></div></div></div>
+  <div class="search-result-item search-item"><div class="flex items-center gap-3"><i data-lucide="shield-alert" style="width:20px;height:20px" class="icon-danger"></i><div><p class="text-sm font-semibold">Suspicious Activity - Parking Lot B</p><p class="text-xs text-muted">Alert • High severity • 2024-12-15 10:45</p></div></div></div>
+  <div class="search-result-item search-item"><div class="flex items-center gap-3"><i data-lucide="user" style="width:20px;height:20px" class="icon-info"></i><div><p class="text-sm font-semibold">John Smith</p><p class="text-xs text-muted">Security • Active • john@sentinel.ai</p></div></div></div>
+  <div class="search-result-item search-item"><div class="flex items-center gap-3"><i data-lucide="hard-hat" style="width:20px;height:20px" class="icon-warning"></i><div><p class="text-sm font-semibold">Safety Violation - Construction Site</p><p class="text-xs text-muted">AI Detection • No helmet • 2024-12-15 10:40</p></div></div></div>
+  <div class="search-result-item search-item"><div class="flex items-center gap-3"><i data-lucide="settings" style="width:20px;height:20px" class="icon-muted"></i><div><p class="text-sm font-semibold">Camera Configuration</p><p class="text-xs text-muted">Settings • Resolution, FPS, Night Vision</p></div></div></div>
+</div>
+    </main>
+  </div>
+</div>
+<script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>

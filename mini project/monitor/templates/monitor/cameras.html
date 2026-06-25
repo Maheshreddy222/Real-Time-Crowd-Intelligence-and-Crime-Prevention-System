@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Live Cameras - AI Sentinel</title>
+  <meta name="description" content="AI-Based Smart CCTV Surveillance System - Live Cameras">
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+  
+</head>
+<body>
+<div class="app-layout">
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <div class="sidebar-logo-icon"><i data-lucide="shield" style="width:20px;height:20px"></i></div>
+      <div><h1>AI Sentinel</h1><p>Smart CCTV</p></div>
+    </div>
+    <nav>
+<a class="nav-item {% if request.path == '/' %}active{% endif %}" href="/">Dashboard</a>
+<a class="nav-item {% if request.path == '/search/' %}active{% endif %}" href="/search/">Search</a>
+<a class="nav-item {% if request.path == '/cameras/' %}active{% endif %}" href="/cameras/">Live Cameras</a>
+
+<a class="nav-item {% if request.path == '/detection/' %}active{% endif %}" href="/detection/">AI Detection</a>
+
+<a class="nav-item {% if request.path == '/alerts/' %}active{% endif %}" href="/alerts/">Alerts</a>
+
+<a class="nav-item {% if request.path == '/analytics/' %}active{% endif %}" href="/analytics/">Analytics</a>
+
+<a class="nav-item {% if request.path == '/users/' %}active{% endif %}" href="/users/">Users</a>
+
+<a class="nav-item {% if request.path == '/security/' %}active{% endif %}" href="/security/">Security</a>
+
+<a class="nav-item {% if request.path == '/settings/' %}active{% endif %}" href="/settings/">Settings</a>
+
+
+</nav>
+    <div class="sidebar-user">
+      <div class="sidebar-avatar">AD</div>
+      <div class="sidebar-user-info"><p>Admin User</p><p>System Admin</p></div>
+      <button class="sidebar-logout"><i data-lucide="log-out" style="width:16px;height:16px"></i></button>
+    </div>
+  </aside>
+  <div class="main-wrapper">
+    <header class="header">
+  <div>
+    <h1 class="font-heading">AI Surveillance Dashboard</h1>
+    <p class="subtitle"><span id="header-date"></span> • <span class="time" id="header-time"></span></p>
+  </div>
+  <div class="header-actions">
+
+
+
+  <!-- REFRESH -->
+  <button class="header-btn" onclick="goToDashboard()">
+    <i data-lucide="refresh-cw" style="width:16px;height:16px"></i>
+  </button>
+
+  <!-- NOTIFICATIONS -->
+<a href="/notifications/" class="header-btn pulse-dot">
+  <i data-lucide="bell" style="width:16px;height:16px"></i>
+</a>
+
+<!-- PROFILE -->
+<a href="/profile/" class="header-avatar">AD</a>
+</div>
+</header>
+    <main class="main-content">
+      
+<div class="page-title-section">
+  <div><h1 class="page-title">Live Cameras</h1><p class="page-subtitle">6 cameras online • 8 total</p></div>
+  <div class="filter-group" data-target=".cam-card"><i data-lucide="filter" style="width:16px;height:16px" class="icon-muted"></i>
+    <button class="filter-btn active" data-filter="all">All</button>
+    <button class="filter-btn" data-filter="online">Online</button>
+    <button class="filter-btn" data-filter="offline">Offline</button>
+  </div>
+</div>
+<div class="grid-4">
+  <div class="glass-card cam-card" data-status="online"><div class="camera-feed"><img src="assets/cam-feed-1.jpg" alt="Main Entrance"><div class="camera-overlay"></div><div class="camera-info"><div><p class="name">Main Entrance</p><p class="location">Building A - Gate 1</p></div><span class="people-badge">14 people</span></div></div><div class="camera-status-bar"><div class="flex items-center"><span class="status-dot online"></span><span class="status-label online">Online</span></div><div class="camera-actions"><button><i data-lucide="volume-2" style="width:14px;height:14px"></i></button><button><i data-lucide="maximize-2" style="width:14px;height:14px"></i></button></div></div></div>
+  <div class="glass-card cam-card" data-status="online"><div class="camera-feed"><img src="assets/cam-feed-2.jpg" alt="Lobby Hall"><div class="camera-overlay"></div><div class="camera-info"><div><p class="name">Lobby Hall</p><p class="location">Building A - Floor 1</p></div><span class="people-badge">8 people</span></div></div><div class="camera-status-bar"><div class="flex items-center"><span class="status-dot online"></span><span class="status-label online">Online</span></div><div class="camera-actions"><button><i data-lucide="volume-2" style="width:14px;height:14px"></i></button><button><i data-lucide="maximize-2" style="width:14px;height:14px"></i></button></div></div></div>
+  <div class="glass-card cam-card" data-status="online"><div class="camera-feed"><img src="assets/cam-feed-3.jpg" alt="Parking Lot B"><div class="camera-overlay"></div><div class="camera-info"><div><p class="name">Parking Lot B</p><p class="location">Outdoor - Zone 3</p></div><span class="people-badge">3 people</span></div></div><div class="camera-status-bar"><div class="flex items-center"><span class="status-dot online"></span><span class="status-label online">Online</span></div><div class="camera-actions"><button><i data-lucide="volume-2" style="width:14px;height:14px"></i></button><button><i data-lucide="maximize-2" style="width:14px;height:14px"></i></button></div></div></div>
+  <div class="glass-card cam-card" data-status="online"><div class="camera-feed"><img src="assets/cam-feed-4.jpg" alt="Construction Site"><div class="camera-overlay"></div><div class="camera-info"><div><p class="name">Construction Site</p><p class="location">Zone 5 - Restricted</p></div><span class="people-badge">12 people</span></div></div><div class="camera-status-bar"><div class="flex items-center"><span class="status-dot online"></span><span class="status-label online">Online</span></div><div class="camera-actions"><button><i data-lucide="volume-2" style="width:14px;height:14px"></i></button><button><i data-lucide="maximize-2" style="width:14px;height:14px"></i></button></div></div></div>
+  <div class="glass-card cam-card" data-status="offline"><div class="camera-feed"><div class="camera-offline">Camera Offline</div></div><div class="camera-status-bar"><div class="flex items-center"><span class="status-dot offline"></span><span class="status-label offline">Offline</span></div><div class="camera-actions"><button><i data-lucide="volume-2" style="width:14px;height:14px"></i></button><button><i data-lucide="maximize-2" style="width:14px;height:14px"></i></button></div></div></div>
+  <div class="glass-card cam-card" data-status="online"><div class="camera-feed"><img src="assets/cam-feed-2.jpg" alt="Cafeteria"><div class="camera-overlay"></div><div class="camera-info"><div><p class="name">Cafeteria</p><p class="location">Building A - Floor 2</p></div><span class="people-badge">22 people</span></div></div><div class="camera-status-bar"><div class="flex items-center"><span class="status-dot online"></span><span class="status-label online">Online</span></div><div class="camera-actions"><button><i data-lucide="volume-2" style="width:14px;height:14px"></i></button><button><i data-lucide="maximize-2" style="width:14px;height:14px"></i></button></div></div></div>
+  <div class="glass-card cam-card" data-status="online"><div class="camera-feed"><img src="assets/cam-feed-3.jpg" alt="Emergency Exit"><div class="camera-overlay"></div><div class="camera-info"><div><p class="name">Emergency Exit</p><p class="location">Building A - Rear</p></div><span class="people-badge">1 people</span></div></div><div class="camera-status-bar"><div class="flex items-center"><span class="status-dot online"></span><span class="status-label online">Online</span></div><div class="camera-actions"><button><i data-lucide="volume-2" style="width:14px;height:14px"></i></button><button><i data-lucide="maximize-2" style="width:14px;height:14px"></i></button></div></div></div>
+  <div class="glass-card cam-card" data-status="offline"><div class="camera-feed"><div class="camera-offline">Camera Offline</div></div><div class="camera-status-bar"><div class="flex items-center"><span class="status-dot offline"></span><span class="status-label offline">Offline</span></div><div class="camera-actions"><button><i data-lucide="volume-2" style="width:14px;height:14px"></i></button><button><i data-lucide="maximize-2" style="width:14px;height:14px"></i></button></div></div></div>
+</div>
+    </main>
+  </div>
+</div>
+<script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>

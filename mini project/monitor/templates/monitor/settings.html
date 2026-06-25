@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Settings - AI Sentinel</title>
+  <meta name="description" content="AI-Based Smart CCTV Surveillance System - Settings">
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+  
+</head>
+<body>
+<div class="app-layout">
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <div class="sidebar-logo-icon"><i data-lucide="shield" style="width:20px;height:20px"></i></div>
+      <div><h1>AI Sentinel</h1><p>Smart CCTV</p></div>
+    </div>
+    <nav>
+<a class="nav-item {% if request.path == '/' %}active{% endif %}" href="/">Dashboard</a>
+<a class="nav-item {% if request.path == '/search/' %}active{% endif %}" href="/search/">Search</a>
+<a class="nav-item {% if request.path == '/cameras/' %}active{% endif %}" href="/cameras/">Live Cameras</a>
+
+<a class="nav-item {% if request.path == '/detection/' %}active{% endif %}" href="/detection/">AI Detection</a>
+
+<a class="nav-item {% if request.path == '/alerts/' %}active{% endif %}" href="/alerts/">Alerts</a>
+
+<a class="nav-item {% if request.path == '/analytics/' %}active{% endif %}" href="/analytics/">Analytics</a>
+
+<a class="nav-item {% if request.path == '/users/' %}active{% endif %}" href="/users/">Users</a>
+
+<a class="nav-item {% if request.path == '/security/' %}active{% endif %}" href="/security/">Security</a>
+
+<a class="nav-item {% if request.path == '/settings/' %}active{% endif %}" href="/settings/">Settings</a>
+
+
+</nav>
+    <div class="sidebar-user">
+      <div class="sidebar-avatar">AD</div>
+      <div class="sidebar-user-info"><p>Admin User</p><p>System Admin</p></div>
+      <button class="sidebar-logout"><i data-lucide="log-out" style="width:16px;height:16px"></i></button>
+    </div>
+  </aside>
+  <div class="main-wrapper">
+    <header class="header">
+  <div>
+    <h1 class="font-heading">AI Surveillance Dashboard</h1>
+    <p class="subtitle"><span id="header-date"></span> • <span class="time" id="header-time"></span></p>
+  </div>
+  <div class="header-actions">
+
+
+
+  <!-- REFRESH -->
+  <button class="header-btn" onclick="goToDashboard()">
+    <i data-lucide="refresh-cw" style="width:16px;height:16px"></i>
+  </button>
+
+  <!-- NOTIFICATIONS -->
+<a href="/notifications/" class="header-btn pulse-dot">
+  <i data-lucide="bell" style="width:16px;height:16px"></i>
+</a>
+
+<!-- PROFILE -->
+<a href="/profile/" class="header-avatar">AD</a>
+</div>
+</header>
+    <main class="main-content">
+      
+<div class="page-title-section">
+  <h1 class="page-title">Settings</h1>
+  <button class="btn btn-primary btn-sm"><i data-lucide="save" style="width:16px;height:16px"></i> Save Changes</button>
+</div>
+<div class="grid-2">
+  <div class="glass-card p-5">
+    <div class="flex items-center gap-2 mb-4"><i data-lucide="camera" style="width:20px;height:20px" class="icon-primary"></i><h2 class="text-base font-heading font-semibold">Camera Configuration</h2></div>
+    <div class="setting-group">
+      <div class="setting-section"><label class="small">Default Resolution</label><input class="input" value="1920x1080"></div>
+      <div class="setting-section"><label class="small">Frame Rate (FPS)</label><input class="input" type="number" value="30"></div>
+      <div class="setting-row"><label>High Resolution Mode</label><label class="switch"><input type="checkbox" checked><span class="switch-slider"></span></label></div>
+      <div class="setting-row"><label>Motion Detection</label><label class="switch"><input type="checkbox" checked><span class="switch-slider"></span></label></div>
+      <div class="setting-row"><label>Night Vision</label><label class="switch"><input type="checkbox" checked><span class="switch-slider"></span></label></div>
+      <div class="setting-row"><label>Audio Recording</label><label class="switch"><input type="checkbox" ><span class="switch-slider"></span></label></div>
+    </div>
+  </div>
+  <div class="glass-card p-5">
+    <div class="flex items-center gap-2 mb-4"><i data-lucide="bell" style="width:20px;height:20px" class="icon-warning"></i><h2 class="text-base font-heading font-semibold">Notification Settings</h2></div>
+    <div class="setting-group">
+      <div class="setting-row"><label>Email Notifications</label><label class="switch"><input type="checkbox" checked><span class="switch-slider"></span></label></div>
+      <div class="setting-row"><label>SMS Notifications</label><label class="switch"><input type="checkbox" ><span class="switch-slider"></span></label></div>
+      <div class="setting-row"><label>Push Notifications</label><label class="switch"><input type="checkbox" checked><span class="switch-slider"></span></label></div>
+      <div class="setting-section"><label class="small">Alert Email</label><input class="input" value="admin@sentinel.ai"></div>
+      <div class="setting-section"><label class="small">Alert Phone</label><input class="input" value="+1 (555) 123-4567"></div>
+    </div>
+  </div>
+  <div class="glass-card p-5">
+    <div class="flex items-center gap-2 mb-4"><i data-lucide="monitor" style="width:20px;height:20px" class="icon-info"></i><h2 class="text-base font-heading font-semibold">System Settings</h2></div>
+    <div class="setting-group">
+      <div class="setting-row"><label>AI Detection Engine</label><label class="switch"><input type="checkbox" checked><span class="switch-slider"></span></label></div>
+      <div class="setting-row"><label>Auto Alert System</label><label class="switch"><input type="checkbox" checked><span class="switch-slider"></span></label></div>
+      <div class="setting-section"><label class="small">Data Retention (days)</label><input class="input" type="number" value="90"></div>
+      <div class="setting-section"><label class="small">Max Concurrent Streams</label><input class="input" type="number" value="16"></div>
+    </div>
+  </div>
+</div>
+    </main>
+  </div>
+</div>
+<script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Users - AI Sentinel</title>
+  <meta name="description" content="AI-Based Smart CCTV Surveillance System - Users">
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+  
+</head>
+<body>
+<div class="app-layout">
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <div class="sidebar-logo-icon"><i data-lucide="shield" style="width:20px;height:20px"></i></div>
+      <div><h1>AI Sentinel</h1><p>Smart CCTV</p></div>
+    </div>
+   <nav>
+<a class="nav-item {% if request.path == '/' %}active{% endif %}" href="/">Dashboard</a>
+<a class="nav-item {% if request.path == '/search/' %}active{% endif %}" href="/search/">Search</a>
+<a class="nav-item {% if request.path == '/cameras/' %}active{% endif %}" href="/cameras/">Live Cameras</a>
+
+<a class="nav-item {% if request.path == '/detection/' %}active{% endif %}" href="/detection/">AI Detection</a>
+
+<a class="nav-item {% if request.path == '/alerts/' %}active{% endif %}" href="/alerts/">Alerts</a>
+
+<a class="nav-item {% if request.path == '/analytics/' %}active{% endif %}" href="/analytics/">Analytics</a>
+
+<a class="nav-item {% if request.path == '/users/' %}active{% endif %}" href="/users/">Users</a>
+
+<a class="nav-item {% if request.path == '/security/' %}active{% endif %}" href="/security/">Security</a>
+
+<a class="nav-item {% if request.path == '/settings/' %}active{% endif %}" href="/settings/">Settings</a>
+
+</nav>
+    <div class="sidebar-user">
+      <div class="sidebar-avatar">AD</div>
+      <div class="sidebar-user-info"><p>Admin User</p><p>System Admin</p></div>
+      <button class="sidebar-logout"><i data-lucide="log-out" style="width:16px;height:16px"></i></button>
+    </div>
+  </aside>
+  <div class="main-wrapper">
+    <header class="header">
+  <div>
+    <h1 class="font-heading">AI Surveillance Dashboard</h1>
+    <p class="subtitle"><span id="header-date"></span> • <span class="time" id="header-time"></span></p>
+  </div>
+  <div class="header-actions">
+
+
+
+  <!-- REFRESH -->
+  <button class="header-btn" onclick="goToDashboard()">
+    <i data-lucide="refresh-cw" style="width:16px;height:16px"></i>
+  </button>
+
+  <!-- NOTIFICATIONS -->
+<a href="/notifications/" class="header-btn pulse-dot">
+  <i data-lucide="bell" style="width:16px;height:16px"></i>
+</a>
+
+<!-- PROFILE -->
+<a href="/profile/" class="header-avatar">AD</a>
+</div>
+</header>
+    <main class="main-content">
+      
+<div class="page-title-section">
+  <div><h1 class="page-title">Users</h1><p class="page-subtitle">6 users registered</p></div>
+  <button class="btn btn-primary btn-sm"><i data-lucide="user-plus" style="width:16px;height:16px"></i> Add User</button>
+</div>
+<div class="glass-card p-5">
+  <table class="data-table"><thead><tr><th>Name</th><th>Email</th><th>Role</th><th>Status</th><th>Last Login</th><th style="width:40px"></th></tr></thead>
+  <tbody>
+    <tr><td class="font-medium">Admin User</td><td class="muted">admin@sentinel.ai</td><td><span class="badge badge-primary">Admin</span></td><td><span class="badge badge-success">Active</span></td><td class="muted">2024-12-15 10:30</td><td><button style="background:none;border:none;cursor:pointer;padding:4px"><i data-lucide="more-horizontal" style="width:16px;height:16px" class="icon-muted"></i></button></td></tr>
+    <tr><td class="font-medium">John Smith</td><td class="muted">john@sentinel.ai</td><td><span class="badge badge-warning">Security</span></td><td><span class="badge badge-success">Active</span></td><td class="muted">2024-12-15 09:15</td><td><button style="background:none;border:none;cursor:pointer;padding:4px"><i data-lucide="more-horizontal" style="width:16px;height:16px" class="icon-muted"></i></button></td></tr>
+    <tr><td class="font-medium">Sarah Johnson</td><td class="muted">sarah@sentinel.ai</td><td><span class="badge badge-warning">Security</span></td><td><span class="badge badge-success">Active</span></td><td class="muted">2024-12-14 18:45</td><td><button style="background:none;border:none;cursor:pointer;padding:4px"><i data-lucide="more-horizontal" style="width:16px;height:16px" class="icon-muted"></i></button></td></tr>
+    <tr><td class="font-medium">Mike Chen</td><td class="muted">mike@sentinel.ai</td><td><span class="badge badge-primary">Admin</span></td><td><span class="badge badge-muted">Inactive</span></td><td class="muted">2024-12-10 14:20</td><td><button style="background:none;border:none;cursor:pointer;padding:4px"><i data-lucide="more-horizontal" style="width:16px;height:16px" class="icon-muted"></i></button></td></tr>
+    <tr><td class="font-medium">Emily Davis</td><td class="muted">emily@sentinel.ai</td><td><span class="badge badge-warning">Security</span></td><td><span class="badge badge-success">Active</span></td><td class="muted">2024-12-15 08:00</td><td><button style="background:none;border:none;cursor:pointer;padding:4px"><i data-lucide="more-horizontal" style="width:16px;height:16px" class="icon-muted"></i></button></td></tr>
+    <tr><td class="font-medium">Robert Wilson</td><td class="muted">robert@sentinel.ai</td><td><span class="badge badge-info">Viewer</span></td><td><span class="badge badge-success">Active</span></td><td class="muted">2024-12-13 16:30</td><td><button style="background:none;border:none;cursor:pointer;padding:4px"><i data-lucide="more-horizontal" style="width:16px;height:16px" class="icon-muted"></i></button></td></tr>
+  </tbody></table>
+</div>
+    </main>
+  </div>
+</div>
+<script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>

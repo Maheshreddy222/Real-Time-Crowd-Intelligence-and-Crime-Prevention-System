@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alerts - AI Sentinel</title>
+  <meta name="description" content="AI-Based Smart CCTV Surveillance System - Alerts">
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+  
+</head>
+<body>
+<div class="app-layout">
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <div class="sidebar-logo-icon"><i data-lucide="shield" style="width:20px;height:20px"></i></div>
+      <div><h1>AI Sentinel</h1><p>Smart CCTV</p></div>
+    </div>
+    <nav>
+<a class="nav-item {% if request.path == '/' %}active{% endif %}" href="/">Dashboard</a>
+<a class="nav-item {% if request.path == '/search/' %}active{% endif %}" href="/search/">Search</a>
+<a class="nav-item {% if request.path == '/cameras/' %}active{% endif %}" href="/cameras/">Live Cameras</a>
+
+<a class="nav-item {% if request.path == '/detection/' %}active{% endif %}" href="/detection/">AI Detection</a>
+
+<a class="nav-item {% if request.path == '/alerts/' %}active{% endif %}" href="/alerts/">Alerts</a>
+
+<a class="nav-item {% if request.path == '/analytics/' %}active{% endif %}" href="/analytics/">Analytics</a>
+
+<a class="nav-item {% if request.path == '/users/' %}active{% endif %}" href="/users/">Users</a>
+
+<a class="nav-item {% if request.path == '/security/' %}active{% endif %}" href="/security/">Security</a>
+
+<a class="nav-item {% if request.path == '/settings/' %}active{% endif %}" href="/settings/">Settings</a>
+
+
+
+</nav>
+    <div class="sidebar-user">
+      <div class="sidebar-avatar">AD</div>
+      <div class="sidebar-user-info"><p>Admin User</p><p>System Admin</p></div>
+      <button class="sidebar-logout"><i data-lucide="log-out" style="width:16px;height:16px"></i></button>
+    </div>
+  </aside>
+  <div class="main-wrapper">
+    <header class="header">
+  <div>
+    <h1 class="font-heading">AI Surveillance Dashboard</h1>
+    <p class="subtitle"><span id="header-date"></span> • <span class="time" id="header-time"></span></p>
+  </div>
+  <div class="header-actions">
+
+
+
+  <!-- REFRESH -->
+  <button class="header-btn" onclick="goToDashboard()">
+    <i data-lucide="refresh-cw" style="width:16px;height:16px"></i>
+  </button>
+
+  <!-- NOTIFICATIONS -->
+<a href="/notifications/" class="header-btn pulse-dot">
+  <i data-lucide="bell" style="width:16px;height:16px"></i>
+</a>
+
+<!-- PROFILE -->
+<a href="/profile/" class="header-avatar">AD</a>
+</div>
+</header>
+    <main class="main-content">
+      
+<h1 class="page-title">Alerts</h1>
+<div class="flex flex-wrap items-center gap-3">
+  <div style="position:relative;flex:1;min-width:200px;max-width:384px"><i data-lucide="search" style="position:absolute;left:12px;top:50%;transform:translateY(-50%);width:16px;height:16px;color:hsl(var(--muted-foreground))"></i><input id="page-search" data-target=".alert-row" class="input" style="padding-left:36px" placeholder="Search alerts..."></div>
+  <div class="filter-group" data-target=".alert-row"><i data-lucide="filter" style="width:16px;height:16px" class="icon-muted"></i>
+    <button class="filter-btn active" data-filter="all">All</button>
+    <button class="filter-btn" data-filter="high">High</button>
+    <button class="filter-btn" data-filter="medium">Medium</button>
+    <button class="filter-btn" data-filter="low">Low</button>
+  </div>
+</div>
+<div style="display:flex;flex-direction:column;gap:12px">
+  <div class="alert-item high pending alert-row" data-severity="high"><div class="flex items-start gap-3"><i data-lucide="shield-alert" style="width:20px;height:20px;margin-top:2px" class="icon-danger shrink-0"></i><div class="flex-1"><div class="alert-header"><span class="alert-title">Suspicious Activity Detected</span><span class="badge badge-danger">HIGH</span><span class="badge badge-danger"><i data-lucide="x-circle" style="width:12px;height:12px"></i> pending</span></div><p class="alert-desc">Unidentified individual loitering near restricted zone</p><div class="alert-meta"><span><i data-lucide="clock" style="width:12px;height:12px"></i> 2024-12-15 10:45</span><span><i data-lucide="map-pin" style="width:12px;height:12px"></i> Parking Lot B</span></div></div></div></div>
+  <div class="alert-item medium alert-row" data-severity="medium"><div class="flex items-start gap-3"><i data-lucide="hard-hat" style="width:20px;height:20px;margin-top:2px" class="icon-warning shrink-0"></i><div class="flex-1"><div class="alert-header"><span class="alert-title">Missing Safety Helmet</span><span class="badge badge-warning">MEDIUM</span><span class="badge badge-danger"><i data-lucide="x-circle" style="width:12px;height:12px"></i> pending</span></div><p class="alert-desc">Worker without helmet in construction area</p><div class="alert-meta"><span><i data-lucide="clock" style="width:12px;height:12px"></i> 2024-12-15 10:38</span><span><i data-lucide="map-pin" style="width:12px;height:12px"></i> Construction Site</span></div></div></div></div>
+  <div class="alert-item medium alert-row" data-severity="medium"><div class="flex items-start gap-3"><i data-lucide="users" style="width:20px;height:20px;margin-top:2px" class="icon-warning shrink-0"></i><div class="flex-1"><div class="alert-header"><span class="alert-title">Crowd Density High</span><span class="badge badge-warning">MEDIUM</span><span class="badge badge-success"><i data-lucide="check-circle-2" style="width:12px;height:12px"></i> resolved</span></div><p class="alert-desc">People count exceeded threshold</p><div class="alert-meta"><span><i data-lucide="clock" style="width:12px;height:12px"></i> 2024-12-15 10:15</span><span><i data-lucide="map-pin" style="width:12px;height:12px"></i> Main Entrance</span></div></div></div></div>
+  <div class="alert-item high pending alert-row" data-severity="high"><div class="flex items-start gap-3"><i data-lucide="shield-alert" style="width:20px;height:20px;margin-top:2px" class="icon-danger shrink-0"></i><div class="flex-1"><div class="alert-header"><span class="alert-title">Unauthorized Access Attempt</span><span class="badge badge-danger">HIGH</span><span class="badge badge-danger"><i data-lucide="x-circle" style="width:12px;height:12px"></i> pending</span></div><p class="alert-desc">Entry detected at locked perimeter gate</p><div class="alert-meta"><span><i data-lucide="clock" style="width:12px;height:12px"></i> 2024-12-15 09:52</span><span><i data-lucide="map-pin" style="width:12px;height:12px"></i> Gate 4</span></div></div></div></div>
+  <div class="alert-item high alert-row" data-severity="high"><div class="flex items-start gap-3"><i data-lucide="alert-triangle" style="width:20px;height:20px;margin-top:2px" class="icon-danger shrink-0"></i><div class="flex-1"><div class="alert-header"><span class="alert-title">Restricted Area Breach</span><span class="badge badge-danger">HIGH</span><span class="badge badge-success"><i data-lucide="check-circle-2" style="width:12px;height:12px"></i> resolved</span></div><p class="alert-desc">Personnel entered zone without authorization</p><div class="alert-meta"><span><i data-lucide="clock" style="width:12px;height:12px"></i> 2024-12-15 09:30</span><span><i data-lucide="map-pin" style="width:12px;height:12px"></i> Server Room B</span></div></div></div></div>
+  <div class="alert-item low alert-row" data-severity="low"><div class="flex items-start gap-3"><i data-lucide="x-circle" style="width:20px;height:20px;margin-top:2px" class="icon-info shrink-0"></i><div class="flex-1"><div class="alert-header"><span class="alert-title">Camera Offline</span><span class="badge badge-info">LOW</span><span class="badge badge-danger"><i data-lucide="x-circle" style="width:12px;height:12px"></i> pending</span></div><p class="alert-desc">Server Room camera has gone offline</p><div class="alert-meta"><span><i data-lucide="clock" style="width:12px;height:12px"></i> 2024-12-15 09:10</span><span><i data-lucide="map-pin" style="width:12px;height:12px"></i> Server Room</span></div></div></div></div>
+  <div class="alert-item medium alert-row" data-severity="medium"><div class="flex items-start gap-3"><i data-lucide="alert-triangle" style="width:20px;height:20px;margin-top:2px" class="icon-warning shrink-0"></i><div class="flex-1"><div class="alert-header"><span class="alert-title">Unattended Object</span><span class="badge badge-warning">MEDIUM</span><span class="badge badge-success"><i data-lucide="check-circle-2" style="width:12px;height:12px"></i> resolved</span></div><p class="alert-desc">Bag left unattended for over 10 minutes</p><div class="alert-meta"><span><i data-lucide="clock" style="width:12px;height:12px"></i> 2024-12-15 08:45</span><span><i data-lucide="map-pin" style="width:12px;height:12px"></i> Lobby Hall</span></div></div></div></div>
+  <div class="alert-item low alert-row" data-severity="low"><div class="flex items-start gap-3"><i data-lucide="shield-alert" style="width:20px;height:20px;margin-top:2px" class="icon-info shrink-0"></i><div class="flex-1"><div class="alert-header"><span class="alert-title">Perimeter Fence Alert</span><span class="badge badge-info">LOW</span><span class="badge badge-success"><i data-lucide="check-circle-2" style="width:12px;height:12px"></i> resolved</span></div><p class="alert-desc">Vibration sensor triggered on east fence</p><div class="alert-meta"><span><i data-lucide="clock" style="width:12px;height:12px"></i> 2024-12-15 08:20</span><span><i data-lucide="map-pin" style="width:12px;height:12px"></i> East Perimeter</span></div></div></div></div>
+</div>
+    </main>
+  </div>
+</div>
+<script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>

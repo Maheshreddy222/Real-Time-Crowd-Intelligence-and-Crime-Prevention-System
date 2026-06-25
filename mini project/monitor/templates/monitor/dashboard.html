@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - AI Sentinel</title>
+  <meta name="description" content="AI-Based Smart CCTV Surveillance System - Dashboard">
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+  
+</head>
+<body>
+<div class="app-layout">
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <div class="sidebar-logo-icon"><i data-lucide="shield" style="width:20px;height:20px"></i></div>
+      <div><h1>AI Sentinel</h1><p>Smart CCTV</p></div>
+    </div>
+    <nav>
+<a class="nav-item {% if request.path == '/' %}active{% endif %}" href="/">Dashboard</a>
+<a class="nav-item {% if request.path == '/search/' %}active{% endif %}" href="/search/">Search</a>
+<a class="nav-item {% if request.path == '/cameras/' %}active{% endif %}" href="/cameras/">Live Cameras</a>
+
+<a class="nav-item {% if request.path == '/detection/' %}active{% endif %}" href="/detection/">AI Detection</a>
+
+<a class="nav-item {% if request.path == '/alerts/' %}active{% endif %}" href="/alerts/">Alerts</a>
+
+<a class="nav-item {% if request.path == '/analytics/' %}active{% endif %}" href="/analytics/">Analytics</a>
+
+<a class="nav-item {% if request.path == '/users/' %}active{% endif %}" href="/users/">Users</a>
+
+<a class="nav-item {% if request.path == '/security/' %}active{% endif %}" href="/security/">Security</a>
+
+<a class="nav-item {% if request.path == '/settings/' %}active{% endif %}" href="/settings/">Settings</a>
+
+
+</nav>
+    <div class="sidebar-user">
+      <div class="sidebar-avatar">AD</div>
+      <div class="sidebar-user-info"><p>Admin User</p><p>System Admin</p></div>
+      <button class="sidebar-logout"><i data-lucide="log-out" style="width:16px;height:16px"></i></button>
+    </div>
+  </aside>
+  <div class="main-wrapper">
+    <header class="header">
+  <div>
+    <h1 class="font-heading">AI Surveillance Dashboard</h1>
+    <p class="subtitle"><span id="header-date"></span> • <span class="time" id="header-time"></span></p>
+  </div>
+  <div class="header-actions">
+
+
+
+  <!-- REFRESH -->
+  <button class="header-btn" onclick="goToDashboard()">
+    <i data-lucide="refresh-cw" style="width:16px;height:16px"></i>
+  </button>
+
+  <!-- NOTIFICATIONS -->
+<a href="/notifications/" class="header-btn pulse-dot">
+  <i data-lucide="bell" style="width:16px;height:16px"></i>
+</a>
+
+<!-- PROFILE -->
+<a href="/profile/" class="header-avatar">AD</a>
+</div>
+</header>
+    <main class="main-content">
+      
+<div class="grid-4">
+
+  <div class="stat-card">
+    <p class="text-2xl font-heading font-bold">{{ total_people }}</p>
+    <p class="text-xs text-muted font-bold">People Detected</p>
+  </div>
+
+  <div class="stat-card">
+    <p class="text-2xl font-heading font-bold">{{ active_alerts }}</p>
+    <p class="text-xs text-muted font-bold">Active Alerts</p>
+  </div>
+
+  <div class="stat-card">
+    <p class="text-2xl font-heading font-bold">{{ zones_secured }}</p>
+    <p class="text-xs text-muted font-bold">Zones Secured</p>
+  </div>
+
+  <div class="stat-card">
+    <p class="text-2xl font-heading font-bold">{{ violations }}</p>
+    <p class="text-xs text-muted font-bold">Safety Violations</p>
+  </div>
+
+</div>
+
+<div class="grid-2-1">
+  <div class="glass-card p-5">
+    <div class="flex items-center justify-between mb-4">
+      <div><h2 class="text-base font-heading font-semibold">Live Camera Feeds</h2><p class="text-xs text-muted">4 cameras active • Real-time monitoring</p></div>
+      <div class="flex items-center gap-1"><span class="status-dot online"></span><span class="text-xs font-medium" style="color:hsl(var(--success))">All Online</span></div>
+    </div>
+    <div class="grid-2">
+      <div class="camera-feed"><img src="assets/cam-feed-1.jpg" alt="Main Entrance"><div class="camera-overlay"></div><div class="bbox bbox-person" style="top:33%;left:25%;width:32px;height:48px"><span class="bbox-label">Person</span></div><div class="bbox bbox-person" style="top:33%;right:33%;width:32px;height:48px"><span class="bbox-label">Person</span></div><div class="camera-info"><div><p class="name">Main Entrance</p><p class="location">Building A - Gate 1</p></div><span class="people-badge">14 people</span></div></div>
+      <div class="camera-feed"><img src="assets/cam-feed-2.jpg" alt="Lobby Hall"><div class="camera-overlay"></div><div class="camera-info"><div><p class="name">Lobby Hall</p><p class="location">Building A - Floor 1</p></div><span class="people-badge">8 people</span></div></div>
+      <div class="camera-feed" style="border:2px solid hsl(var(--danger));animation:pulse 2s infinite"><img src="assets/cam-feed-3.jpg" alt="Parking Lot B"><div class="camera-overlay"></div><div class="camera-info"><div><p class="name">Parking Lot B</p><p class="location">Outdoor - Zone 3</p></div><span class="people-badge">3 people</span></div></div>
+      <div class="camera-feed"><img src="assets/cam-feed-4.jpg" alt="Construction Site"><div class="camera-overlay"></div><div class="camera-info"><div><p class="name">Construction Site</p><p class="location">Zone 5 - Restricted</p></div><span class="people-badge">12 people</span></div></div>
+    </div>
+  </div>
+  <div class="glass-card p-5">
+    <div class="flex items-center justify-between mb-4"><div><h2 class="text-base font-heading font-semibold">Recent Alerts</h2><p class="text-xs text-muted">5 unresolved alerts</p></div><a href="/alerts/" class="text-xs text-primary font-medium">View All</a></div>
+    <div style="display:flex;flex-direction:column;gap:10px;max-height:420px;overflow-y:auto">
+      <div class="alert-item danger"><div class="flex items-start gap-2"><i data-lucide="shield-alert" style="width:16px;height:16px;margin-top:2px" class="icon-danger"></i><div class="flex-1"><div class="alert-header"><span class="alert-title">Suspicious Activity Detected</span><span class="status-dot" style="background:hsl(var(--danger));width:6px;height:6px"></span></div><p class="alert-desc">Unidentified individual loitering near restricted zone</p><div class="alert-meta"><span><i data-lucide="clock" style="width:12px;height:12px"></i> 2 min ago</span><span>📍 Parking Lot B</span></div></div></div></div>
+      <div class="alert-item warning"><div class="flex items-start gap-2"><i data-lucide="hard-hat" style="width:16px;height:16px;margin-top:2px" class="icon-warning"></i><div class="flex-1"><div class="alert-header"><span class="alert-title">Missing Safety Helmet</span><span class="status-dot" style="background:hsl(var(--warning));width:6px;height:6px"></span></div><p class="alert-desc">Worker detected without helmet in construction area</p><div class="alert-meta"><span><i data-lucide="clock" style="width:12px;height:12px"></i> 8 min ago</span><span>📍 Construction Site</span></div></div></div></div>
+      <div class="alert-item warning"><div class="flex items-start gap-2"><i data-lucide="users" style="width:16px;height:16px;margin-top:2px" class="icon-warning"></i><div class="flex-1"><div class="alert-header"><span class="alert-title">Crowd Density High</span><span class="status-dot" style="background:hsl(var(--warning));width:6px;height:6px"></span></div><p class="alert-desc">People count exceeded threshold at main entrance</p><div class="alert-meta"><span><i data-lucide="clock" style="width:12px;height:12px"></i> 15 min ago</span><span>📍 Main Entrance</span></div></div></div></div>
+      <div class="alert-item danger"><div class="flex items-start gap-2"><i data-lucide="shield-alert" style="width:16px;height:16px;margin-top:2px" class="icon-danger"></i><div class="flex-1"><div class="alert-header"><span class="alert-title">Unauthorized Access Attempt</span><span class="status-dot" style="background:hsl(var(--danger));width:6px;height:6px"></span></div><p class="alert-desc">Entry detected at locked perimeter gate after hours</p><div class="alert-meta"><span><i data-lucide="clock" style="width:12px;height:12px"></i> 23 min ago</span><span>📍 Gate 4</span></div></div></div></div>
+      <div class="alert-item warning"><div class="flex items-start gap-2"><i data-lucide="alert-triangle" style="width:16px;height:16px;margin-top:2px" class="icon-warning"></i><div class="flex-1"><div class="alert-header"><span class="alert-title">Restricted Area Breach</span><span class="status-dot" style="background:hsl(var(--warning));width:6px;height:6px"></span></div><p class="alert-desc">Personnel entered zone without authorization badge</p><div class="alert-meta"><span><i data-lucide="clock" style="width:12px;height:12px"></i> 45 min ago</span><span>📍 Server Room B</span></div></div></div></div>
+    </div>
+  </div>
+</div>
+
+<div class="grid-1-2">
+  <div class="glass-card p-5">
+    <div class="flex items-center gap-2 mb-4"><i data-lucide="activity" style="width:16px;height:16px" class="icon-primary"></i><h2 class="text-base font-heading font-semibold">Crowd Density</h2></div>
+    <div style="display:flex;flex-direction:column;gap:16px">
+      <div><div class="flex items-center justify-between mb-1"><span class="text-sm">Main Entrance</span><span class="badge badge-danger">High</span></div><div class="progress-bar"><div class="progress-fill danger" style="width:87%"></div></div></div>
+      <div><div class="flex items-center justify-between mb-1"><span class="text-sm">Lobby Hall</span><span class="badge badge-warning">Medium</span></div><div class="progress-bar"><div class="progress-fill warning" style="width:54%"></div></div></div>
+      <div><div class="flex items-center justify-between mb-1"><span class="text-sm">Parking Lot B</span><span class="badge badge-success">Low</span></div><div class="progress-bar"><div class="progress-fill success" style="width:22%"></div></div></div>
+      <div><div class="flex items-center justify-between mb-1"><span class="text-sm">Construction Site</span><span class="badge badge-warning">Medium</span></div><div class="progress-bar"><div class="progress-fill warning" style="width:61%"></div></div></div>
+    </div>
+  </div>
+  <div class="grid-2">
+    <div class="glass-card p-5">
+      <h2 class="text-base font-heading font-semibold mb-1">Crowd Trends</h2>
+      <p class="text-xs text-muted mb-4">Today's people count over time</p>
+      <div class="chart-container"><canvas id="crowdChart"></canvas></div>
+    </div>
+    <div class="glass-card p-5">
+      <h2 class="text-base font-heading font-semibold mb-1">Incident History</h2>
+      <p class="text-xs text-muted mb-4">Weekly incidents vs resolved</p>
+      <div class="chart-container"><canvas id="incidentChart"></canvas></div>
+    </div>
+  </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+<script>
+document.addEventListener('DOMContentLoaded',()=>{
+  const cs = (h,s,l,a) => `hsla(${h},${s}%,${l}%,${a||1})`;
+  new Chart(document.getElementById('crowdChart'),{type:'line',data:{labels:['06:00','08:00','10:00','12:00','14:00','16:00','18:00','20:00','22:00'],datasets:[{label:'People',data:[120,450,780,1100,920,1050,680,340,180],borderColor:cs(210,100,50),backgroundColor:cs(210,100,50,0.1),fill:true,tension:0.4,borderWidth:2,pointRadius:3}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{grid:{color:cs(214,32,91,0.5)},ticks:{font:{size:11},color:cs(215,16,47)}},y:{grid:{color:cs(214,32,91,0.5)},ticks:{font:{size:11},color:cs(215,16,47)}}}}});
+  new Chart(document.getElementById('incidentChart'),{type:'bar',data:{labels:['Mon','Tue','Wed','Thu','Fri','Sat','Sun'],datasets:[{label:'Incidents',data:[3,5,2,7,4,1,2],backgroundColor:cs(0,84,60,0.8),borderRadius:4,barThickness:16},{label:'Resolved',data:[3,4,2,6,4,1,1],backgroundColor:cs(142,76,36,0.8),borderRadius:4,barThickness:16}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{grid:{display:false},ticks:{font:{size:11},color:cs(215,16,47)}},y:{grid:{color:cs(214,32,91,0.5)},ticks:{font:{size:11},color:cs(215,16,47)}}}}});
+});
+</script>
+    </main>
+  </div>
+</div>
+<script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>

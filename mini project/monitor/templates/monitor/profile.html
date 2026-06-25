@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profile - AI Sentinel</title>
+  <meta name="description" content="AI-Based Smart CCTV Surveillance System - Profile">
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+  
+</head>
+<body>
+<div class="app-layout">
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <div class="sidebar-logo-icon"><i data-lucide="shield" style="width:20px;height:20px"></i></div>
+      <div><h1>AI Sentinel</h1><p>Smart CCTV</p></div>
+    </div>
+    <nav>
+<a class="nav-item {% if request.path == '/' %}active{% endif %}" href="/">Dashboard</a>
+<a class="nav-item {% if request.path == '/search/' %}active{% endif %}" href="/search/">Search</a>
+<a class="nav-item {% if request.path == '/cameras/' %}active{% endif %}" href="/cameras/">Live Cameras</a>
+
+<a class="nav-item {% if request.path == '/detection/' %}active{% endif %}" href="/detection/">AI Detection</a>
+
+<a class="nav-item {% if request.path == '/alerts/' %}active{% endif %}" href="/alerts/">Alerts</a>
+
+<a class="nav-item {% if request.path == '/analytics/' %}active{% endif %}" href="/analytics/">Analytics</a>
+
+<a class="nav-item {% if request.path == '/users/' %}active{% endif %}" href="/users/">Users</a>
+
+<a class="nav-item {% if request.path == '/security/' %}active{% endif %}" href="/security/">Security</a>
+
+<a class="nav-item {% if request.path == '/settings/' %}active{% endif %}" href="/settings/">Settings</a>
+
+
+</nav>
+    <div class="sidebar-user">
+      <div class="sidebar-avatar">AD</div>
+      <div class="sidebar-user-info"><p>Admin User</p><p>System Admin</p></div>
+      <button class="sidebar-logout"><i data-lucide="log-out" style="width:16px;height:16px"></i></button>
+    </div>
+  </aside>
+  <div class="main-wrapper">
+    <header class="header">
+  <div>
+    <h1 class="font-heading">AI Surveillance Dashboard</h1>
+    <p class="subtitle"><span id="header-date"></span> • <span class="time" id="header-time"></span></p>
+  </div>
+  <div class="header-actions">
+
+
+
+  <!-- REFRESH -->
+  <button class="header-btn" onclick="goToDashboard()">
+    <i data-lucide="refresh-cw" style="width:16px;height:16px"></i>
+  </button>
+
+  <!-- NOTIFICATIONS -->
+<a href="/notifications/" class="header-btn pulse-dot">
+  <i data-lucide="bell" style="width:16px;height:16px"></i>
+</a>
+
+<!-- PROFILE -->
+<a href="/profile/" class="header-avatar">AD</a>
+</div>
+</header>
+    <main class="main-content">
+      
+<h1 class="page-title">Profile</h1>
+<div class="glass-card">
+  <div class="profile-header">
+    <div class="profile-avatar-lg">AD</div>
+    <div>
+      <h2 class="text-xl font-heading font-bold">Admin User</h2>
+      <p class="text-sm text-muted">admin@sentinel.ai</p>
+      <span class="badge badge-primary" style="margin-top:8px">System Admin</span>
+    </div>
+  </div>
+</div>
+<div class="grid-2">
+  <div class="glass-card p-5">
+    <h2 class="text-base font-heading font-semibold mb-4">Personal Information</h2>
+    <div class="setting-group">
+      <div class="setting-section"><label class="small">Full Name</label><input class="input" value="Admin User"></div>
+      <div class="setting-section"><label class="small">Email</label><input class="input" value="admin@sentinel.ai"></div>
+      <div class="setting-section"><label class="small">Phone</label><input class="input" value="+1 (555) 123-4567"></div>
+      <div class="setting-section"><label class="small">Department</label><input class="input" value="IT Security"></div>
+    </div>
+    <button class="btn btn-primary btn-sm" style="margin-top:16px"><i data-lucide="save" style="width:16px;height:16px"></i> Update Profile</button>
+  </div>
+  <div class="glass-card p-5">
+    <h2 class="text-base font-heading font-semibold mb-4">Account Security</h2>
+    <div class="setting-group">
+      <div class="setting-section"><label class="small">Current Password</label><input class="input" type="password" placeholder="Enter current password"></div>
+      <div class="setting-section"><label class="small">New Password</label><input class="input" type="password" placeholder="Enter new password"></div>
+      <div class="setting-section"><label class="small">Confirm Password</label><input class="input" type="password" placeholder="Confirm new password"></div>
+    </div>
+    <button class="btn btn-primary btn-sm" style="margin-top:16px"><i data-lucide="lock" style="width:16px;height:16px"></i> Change Password</button>
+  </div>
+</div>
+<div class="glass-card p-5">
+  <h2 class="text-base font-heading font-semibold mb-3">Recent Activity</h2>
+  <table class="data-table"><thead><tr><th>Action</th><th>Date</th><th>IP Address</th></tr></thead>
+  <tbody>
+    <tr><td class="font-medium">Login</td><td class="muted">2024-12-15 10:30:00</td><td class="muted mono">10.0.0.1</td></tr>
+    <tr><td class="font-medium">Settings Updated</td><td class="muted">2024-12-15 09:15:00</td><td class="muted mono">10.0.0.1</td></tr>
+    <tr><td class="font-medium">Alert Acknowledged</td><td class="muted">2024-12-14 18:45:00</td><td class="muted mono">10.0.0.1</td></tr>
+    <tr><td class="font-medium">Camera Added</td><td class="muted">2024-12-14 14:20:00</td><td class="muted mono">10.0.0.1</td></tr>
+  </tbody></table>
+</div>
+    </main>
+  </div>
+</div>
+<script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>

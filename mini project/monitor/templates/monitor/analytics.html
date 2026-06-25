@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Analytics - AI Sentinel</title>
+  <meta name="description" content="AI-Based Smart CCTV Surveillance System - Analytics">
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+  
+</head>
+<body>
+<div class="app-layout">
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <div class="sidebar-logo-icon"><i data-lucide="shield" style="width:20px;height:20px"></i></div>
+      <div><h1>AI Sentinel</h1><p>Smart CCTV</p></div>
+    </div>
+    <nav>
+<a class="nav-item {% if request.path == '/' %}active{% endif %}" href="/">Dashboard</a>
+<a class="nav-item {% if request.path == '/search/' %}active{% endif %}" href="/search/">Search</a>
+<a class="nav-item {% if request.path == '/cameras/' %}active{% endif %}" href="/cameras/">Live Cameras</a>
+
+<a class="nav-item {% if request.path == '/detection/' %}active{% endif %}" href="/detection/">AI Detection</a>
+
+<a class="nav-item {% if request.path == '/alerts/' %}active{% endif %}" href="/alerts/">Alerts</a>
+
+<a class="nav-item {% if request.path == '/analytics/' %}active{% endif %}" href="/analytics/">Analytics</a>
+
+<a class="nav-item {% if request.path == '/users/' %}active{% endif %}" href="/users/">Users</a>
+
+<a class="nav-item {% if request.path == '/security/' %}active{% endif %}" href="/security/">Security</a>
+
+<a class="nav-item {% if request.path == '/settings/' %}active{% endif %}" href="/settings/">Settings</a>
+
+</nav>
+    <div class="sidebar-user">
+      <div class="sidebar-avatar">AD</div>
+      <div class="sidebar-user-info"><p>Admin User</p><p>System Admin</p></div>
+      <button class="sidebar-logout"><i data-lucide="log-out" style="width:16px;height:16px"></i></button>
+    </div>
+  </aside>
+  <div class="main-wrapper">
+    <header class="header">
+  <div>
+    <h1 class="font-heading">AI Surveillance Dashboard</h1>
+    <p class="subtitle"><span id="header-date"></span> • <span class="time" id="header-time"></span></p>
+  </div>
+  <div class="header-actions">
+
+
+
+  <!-- REFRESH -->
+  <button class="header-btn" onclick="goToDashboard()">
+    <i data-lucide="refresh-cw" style="width:16px;height:16px"></i>
+  </button>
+
+  <!-- NOTIFICATIONS -->
+<a href="/notifications/" class="header-btn pulse-dot">
+  <i data-lucide="bell" style="width:16px;height:16px"></i>
+</a>
+
+<!-- PROFILE -->
+<a href="/profile/" class="header-avatar">AD</a>
+</div>
+</header>
+    <main class="main-content">
+      
+<h1 class="page-title">Analytics</h1>
+<div class="grid-2">
+  <div class="glass-card p-5">
+    <h2 class="text-base font-heading font-semibold mb-1">Crowd Trends</h2>
+    <p class="text-xs text-muted mb-4">Today's people count over time</p>
+    <div class="chart-container"><canvas id="analyticsLineChart"></canvas></div>
+  </div>
+  <div class="glass-card p-5">
+    <h2 class="text-base font-heading font-semibold mb-1">Incident History</h2>
+    <p class="text-xs text-muted mb-4">Weekly incidents vs resolved</p>
+    <div class="chart-container"><canvas id="analyticsBarChart"></canvas></div>
+  </div>
+</div>
+<div class="glass-card p-5">
+  <h2 class="text-base font-heading font-semibold mb-1">Zone-wise Density</h2>
+  <p class="text-xs text-muted mb-4">Distribution of people across zones</p>
+  <div class="flex items-center gap-5" style="flex-wrap:wrap">
+    <div style="width:256px;height:256px"><canvas id="analyticsPieChart"></canvas></div>
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <div class="flex items-center gap-3"><div style="width:12px;height:12px;border-radius:50%;background:hsl(210,100%,50%)"></div><span class="text-sm">Main Entrance</span><span class="text-sm font-semibold" style="margin-left:auto">35%</span></div>
+      <div class="flex items-center gap-3"><div style="width:12px;height:12px;border-radius:50%;background:hsl(200,90%,48%)"></div><span class="text-sm">Lobby</span><span class="text-sm font-semibold" style="margin-left:auto">25%</span></div>
+      <div class="flex items-center gap-3"><div style="width:12px;height:12px;border-radius:50%;background:hsl(142,76%,36%)"></div><span class="text-sm">Parking</span><span class="text-sm font-semibold" style="margin-left:auto">15%</span></div>
+      <div class="flex items-center gap-3"><div style="width:12px;height:12px;border-radius:50%;background:hsl(38,92%,50%)"></div><span class="text-sm">Construction</span><span class="text-sm font-semibold" style="margin-left:auto">20%</span></div>
+      <div class="flex items-center gap-3"><div style="width:12px;height:12px;border-radius:50%;background:hsl(215,16%,47%)"></div><span class="text-sm">Other</span><span class="text-sm font-semibold" style="margin-left:auto">5%</span></div>
+    </div>
+  </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+<script>
+document.addEventListener('DOMContentLoaded',()=>{
+  const cs=(h,s,l,a)=>`hsla(${h},${s}%,${l}%,${a||1})`;
+  new Chart(document.getElementById('analyticsLineChart'),{type:'line',data:{labels:['06:00','08:00','10:00','12:00','14:00','16:00','18:00','20:00','22:00'],datasets:[{label:'People',data:[120,450,780,1100,920,1050,680,340,180],borderColor:cs(210,100,50),backgroundColor:cs(210,100,50,0.1),fill:true,tension:0.4,borderWidth:2}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{grid:{color:cs(214,32,91,0.5)},ticks:{font:{size:11},color:cs(215,16,47)}},y:{grid:{color:cs(214,32,91,0.5)},ticks:{font:{size:11},color:cs(215,16,47)}}}}});
+  new Chart(document.getElementById('analyticsBarChart'),{type:'bar',data:{labels:['Mon','Tue','Wed','Thu','Fri','Sat','Sun'],datasets:[{label:'Incidents',data:[3,5,2,7,4,1,2],backgroundColor:cs(0,84,60,0.8),borderRadius:4},{label:'Resolved',data:[3,4,2,6,4,1,1],backgroundColor:cs(142,76,36,0.8),borderRadius:4}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{grid:{display:false}},y:{grid:{color:cs(214,32,91,0.5)}}}}});
+  new Chart(document.getElementById('analyticsPieChart'),{type:'doughnut',data:{labels:['Main Entrance','Lobby','Parking','Construction','Other'],datasets:[{data:[35,25,15,20,5],backgroundColor:[cs(210,100,50),cs(200,90,48),cs(142,76,36),cs(38,92,50),cs(215,16,47)],borderWidth:0}]},options:{responsive:true,maintainAspectRatio:false,cutout:'60%',plugins:{legend:{display:false}}}});
+});
+</script>
+    </main>
+  </div>
+</div>
+<script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>

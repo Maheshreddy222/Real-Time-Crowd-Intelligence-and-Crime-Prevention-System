@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Security - AI Sentinel</title>
+  <meta name="description" content="AI-Based Smart CCTV Surveillance System - Security">
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+  
+</head>
+<body>
+<div class="app-layout">
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <div class="sidebar-logo-icon"><i data-lucide="shield" style="width:20px;height:20px"></i></div>
+      <div><h1>AI Sentinel</h1><p>Smart CCTV</p></div>
+    </div>
+    <nav>
+<a class="nav-item {% if request.path == '/' %}active{% endif %}" href="/">Dashboard</a>
+<a class="nav-item {% if request.path == '/search/' %}active{% endif %}" href="/search/">Search</a>
+<a class="nav-item {% if request.path == '/cameras/' %}active{% endif %}" href="/cameras/">Live Cameras</a>
+
+<a class="nav-item {% if request.path == '/detection/' %}active{% endif %}" href="/detection/">AI Detection</a>
+
+<a class="nav-item {% if request.path == '/alerts/' %}active{% endif %}" href="/alerts/">Alerts</a>
+
+<a class="nav-item {% if request.path == '/analytics/' %}active{% endif %}" href="/analytics/">Analytics</a>
+
+<a class="nav-item {% if request.path == '/users/' %}active{% endif %}" href="/users/">Users</a>
+
+<a class="nav-item {% if request.path == '/security/' %}active{% endif %}" href="/security/">Security</a>
+
+<a class="nav-item {% if request.path == '/settings/' %}active{% endif %}" href="/settings/">Settings</a>
+
+</nav>
+    <div class="sidebar-user">
+      <div class="sidebar-avatar">AD</div>
+      <div class="sidebar-user-info"><p>Admin User</p><p>System Admin</p></div>
+      <button class="sidebar-logout"><i data-lucide="log-out" style="width:16px;height:16px"></i></button>
+    </div>
+  </aside>
+  <div class="main-wrapper">
+    <header class="header">
+  <div>
+    <h1 class="font-heading">AI Surveillance Dashboard</h1>
+    <p class="subtitle"><span id="header-date"></span> • <span class="time" id="header-time"></span></p>
+  </div>
+  <div class="header-actions">
+
+
+
+  <!-- REFRESH -->
+  <button class="header-btn" onclick="goToDashboard()">
+    <i data-lucide="refresh-cw" style="width:16px;height:16px"></i>
+  </button>
+
+  <!-- NOTIFICATIONS -->
+<a href="/notifications/" class="header-btn pulse-dot">
+  <i data-lucide="bell" style="width:16px;height:16px"></i>
+</a>
+
+<!-- PROFILE -->
+<a href="/profile/" class="header-avatar">AD</a>
+</div>
+</header>
+    <main class="main-content">
+      
+<h1 class="page-title">Security</h1>
+<div class="grid-4">
+  <div class="stat-card"><div class="icon-bg-primary mb-3" style="width:fit-content"><i data-lucide="shield" style="width:20px;height:20px" class="icon-primary"></i></div><p class="text-2xl font-heading font-bold">1,284</p><p class="text-xs text-muted">Total Events</p></div>
+  <div class="stat-card"><div class="icon-bg-danger mb-3" style="width:fit-content"><i data-lucide="lock" style="width:20px;height:20px" class="icon-danger"></i></div><p class="text-2xl font-heading font-bold">47</p><p class="text-xs text-muted">Blocked Threats</p></div>
+  <div class="stat-card"><div class="icon-bg-success mb-3" style="width:fit-content"><i data-lucide="key" style="width:20px;height:20px" class="icon-success"></i></div><p class="text-2xl font-heading font-bold">12</p><p class="text-xs text-muted">Active Sessions</p></div>
+  <div class="stat-card"><div class="icon-bg-info mb-3" style="width:fit-content"><i data-lucide="clock" style="width:20px;height:20px" class="icon-info"></i></div><p class="text-2xl font-heading font-bold">99.9%</p><p class="text-xs text-muted">Uptime</p></div>
+</div>
+<div class="grid-2">
+  <div class="glass-card p-5">
+    <h2 class="text-base font-heading font-semibold mb-3">Security Event Log</h2>
+    <table class="data-table"><thead><tr><th>Event</th><th>User</th><th>IP</th><th>Time</th><th>Status</th></tr></thead>
+    <tbody>
+      <tr><td class="font-medium">Login Attempt Failed</td><td class="muted">unknown@mail.com</td><td class="muted mono">192.168.1.45</td><td class="muted">10:45:32</td><td><span class="badge badge-danger"><i data-lucide="x-circle" style="width:12px;height:12px"></i> Blocked</span></td></tr>
+      <tr><td class="font-medium">Admin Access Granted</td><td class="muted">admin@sentinel.ai</td><td class="muted mono">10.0.0.1</td><td class="muted">10:30:15</td><td><span class="badge badge-success"><i data-lucide="check-circle-2" style="width:12px;height:12px"></i> Success</span></td></tr>
+      <tr><td class="font-medium">API Key Generated</td><td class="muted">admin@sentinel.ai</td><td class="muted mono">10.0.0.1</td><td class="muted">10:15:08</td><td><span class="badge badge-success"><i data-lucide="check-circle-2" style="width:12px;height:12px"></i> Success</span></td></tr>
+      <tr><td class="font-medium">Brute Force Detected</td><td class="muted">unknown</td><td class="muted mono">203.45.67.89</td><td class="muted">09:58:44</td><td><span class="badge badge-danger"><i data-lucide="x-circle" style="width:12px;height:12px"></i> Blocked</span></td></tr>
+      <tr><td class="font-medium">Password Changed</td><td class="muted">john@sentinel.ai</td><td class="muted mono">10.0.0.15</td><td class="muted">09:45:22</td><td><span class="badge badge-success"><i data-lucide="check-circle-2" style="width:12px;height:12px"></i> Success</span></td></tr>
+      <tr><td class="font-medium">Session Expired</td><td class="muted">sarah@sentinel.ai</td><td class="muted mono">10.0.0.22</td><td class="muted">09:30:00</td><td><span class="badge badge-info"><i data-lucide="clock" style="width:12px;height:12px"></i> Info</span></td></tr>
+    </tbody></table>
+  </div>
+  <div class="glass-card p-5">
+    <h2 class="text-base font-heading font-semibold mb-3">Access Control</h2>
+    <table class="data-table"><thead><tr><th>Zone</th><th>Level</th><th>Authorized</th><th>Method</th></tr></thead>
+    <tbody>
+      <tr><td class="font-medium">Server Room</td><td><span class="badge badge-danger">Restricted</span></td><td class="muted">2</td><td class="muted">Biometric + Card</td></tr>
+      <tr><td class="font-medium">Control Center</td><td><span class="badge badge-warning">High</span></td><td class="muted">5</td><td class="muted">Card + PIN</td></tr>
+      <tr><td class="font-medium">Main Building</td><td><span class="badge badge-primary">Standard</span></td><td class="muted">50</td><td class="muted">Card</td></tr>
+      <tr><td class="font-medium">Parking Area</td><td><span class="badge badge-success">Low</span></td><td class="muted">100</td><td class="muted">Open</td></tr>
+    </tbody></table>
+  </div>
+</div>
+    </main>
+  </div>
+</div>
+<script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>
